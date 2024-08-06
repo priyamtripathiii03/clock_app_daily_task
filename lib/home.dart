@@ -12,6 +12,32 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage(img),
+                  ),
+                  const Text(
+                    'Priyam Tripathi',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+            ),
+            // drawerContain(),
+            ...List.generate(
+              drawerList.length,
+                  (index) => drawerMake(index: index),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text(
           "Actions",
@@ -265,4 +291,16 @@ class _HomeState extends State<Home> {
       style: TextStyle(fontSize: size, color: color),
     );
   }
+}
+ListTile drawerMake({required int index}) {
+  return ListTile(
+    leading: Icon(
+      drawerList[index]['icon'],
+      color: Colors.black,
+    ),
+    title: Text(
+      drawerList[index]['name'],
+      style: TextStyle(color: Colors.black),
+    ),
+  );
 }
